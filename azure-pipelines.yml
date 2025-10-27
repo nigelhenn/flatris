@@ -7,7 +7,7 @@ resources:
       type: github
       name: nigelhenn/flatris
       ref: refs/heads/main
-      endpoint: GitHubConnection  # Replace with your actual service connection name
+      endpoint: Github-Flatris  # Replace with your actual service connection name
 
 pool:
   vmImage: ubuntu-latest
