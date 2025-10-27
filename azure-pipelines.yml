@@ -1,10 +1,13 @@
-# Node.js with React
-# Build a Node.js project that uses React.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - master
+
+resources:
+  repositories:
+    - repository: flatris
+      type: github
+      name: nigelhenn/flatris
+      ref: refs/heads/main
+      endpoint: GitHubConnection  # Replace with your actual service connection name
 
 pool:
   vmImage: ubuntu-latest
@@ -16,6 +19,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
+    npm install --legacy-peer-deps
+    npm install env-cmd --save-dev
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'Install dependencies and build project'
+
