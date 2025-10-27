@@ -19,10 +19,12 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    npm install eslint-plugin-import@latest --save-dev
     npm install --legacy-peer-deps
     npm install env-cmd --save-dev
-    env-cmd -f ./config/.env npm run build
-  displayName: 'Install dependencies and build project'
+    env-cmd next build web
+  displayName: 'Fix dependencies and build project'
+
 
   
 
