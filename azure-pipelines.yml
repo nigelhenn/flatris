@@ -6,7 +6,7 @@ resources:
     - repository: flatris
       type: github
       name: nigelhenn/flatris
-      ref: refs/heads/main
+      ref: refs/heads/master
       endpoint: Github-Flatris  # Replace with your actual service connection name
 
 pool:
