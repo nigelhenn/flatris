@@ -7,7 +7,8 @@ resources:
       type: github
       name: nigelhenn/flatris
       ref: refs/heads/master
-      endpoint: Github-Flatris  # Replace with your actual service connection name
+      endpoint: GitHub-flatris  # Replace with your actual service connection name
+
 pool:
   vmImage: ubuntu-latest
 
@@ -18,16 +19,10 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    # Upgrade eslint-plugin-import to fix peer conflict
     npm install eslint-plugin-import@latest --save-dev
-
-    # Install all dependencies safely
     npm install --legacy-peer-deps
-
-    # Install env-cmd locally
     npm install env-cmd --save-dev
 
-    # Check for .env file before using env-cmd
     if [ -f .env ]; then
       echo ".env file found, using env-cmd"
       npx env-cmd next build web
