@@ -19,11 +19,23 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    # Upgrade eslint-plugin-import to avoid peer conflict
     npm install eslint-plugin-import@latest --save-dev
+
+    # Install all dependencies safely
     npm install --legacy-peer-deps
+
+    # Install env-cmd locally
     npm install env-cmd --save-dev
-    env-cmd next build web
-  displayName: 'Fix dependencies and build project'
+
+    # Check if .env exists before using env-cmd
+    if [ -f .env ]; then
+      npx env-cmd next build web
+    else
+      echo "No .env file found, running build without env-cmd"
+      npm run build
+    fi
+  displayName: 'Install dependencies and build project'
 
 
   
